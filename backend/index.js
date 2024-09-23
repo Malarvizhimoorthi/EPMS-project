@@ -5,7 +5,6 @@ let bodyParser = require("body-parser");
 
 // Express Route
 const AdminModel=require("./Model/Admin")
-const EmployeeModel=require("./Model/Employee")
 const RegisterRoute=require("./routes/register.routes")
 const UpdateRoute=require("./routes/update.routes")
 const DeleteRoute=require("./routes/delete.routes")
@@ -50,21 +49,6 @@ const password=req.body.password
     .catch(err=>console.log(err))
 
 })
-app.post('/employeelogin', (req, res) => {
-  const password=req.body.password
-   EmployeeModel.findOne({ email: req.body.email })
-      .then(user => {
-        if (user.password == password) {
-          res.json("success");
-        }
-        else (user.password == password)
-        {
-          res.json("incorrect password");
-        }
-      })
-      .catch(err=>console.log(err))
-  
-  })
 
   app.use("/Register",RegisterRoute,UpdateRoute,DeleteRoute)
 
